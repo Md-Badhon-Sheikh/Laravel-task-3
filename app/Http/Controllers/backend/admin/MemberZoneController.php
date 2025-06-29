@@ -39,7 +39,7 @@ class MemberZoneController extends Controller implements HasMiddleware
                     ]);
                     return back()->with('success', 'Added Successfully');
                 } elseif($id > 0){
-                    $member_zone_type = MemberZone::fineOrFail($id);
+                    $member_zone_type = MemberZone::findOrFail($id);
                     $member_zone_type->update([
                         'name' => $request->name,
                         'priority' => $request->priority,
@@ -59,7 +59,7 @@ class MemberZoneController extends Controller implements HasMiddleware
 
     public function delete($id){
         $server_response = ['status' => 'FAILED', 'message' => 'Not Found'];
-        $member_zone_type = MemberZone::find($id);
+        $member_zone_type = MemberZone::findOrFail($id);
         if($member_zone_type){
             $member_zone_type -> delete();
             $server_response = ['status'=>'SUCCESS', 'message'=> 'Deleted Successfully'];

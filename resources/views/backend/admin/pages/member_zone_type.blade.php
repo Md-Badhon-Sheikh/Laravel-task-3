@@ -114,6 +114,7 @@
             <div class="modal-body">
                 <form action="{{ route('admin.member-zone') }}" method="POST">
                     @csrf
+                    <input type="hidden" name="id" id="id">
                     <div class="row">
                         <div class="col-md-4 mb-3">
                             <label class="form-label" for="">Name (Bangla)*</label>
