@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\backend\admin\DashboardController;
+use App\Http\Controllers\backend\admin\ImportantLinkController;
 use App\Http\Controllers\backend\admin\MemberZoneController;
 use App\Http\Controllers\backend\admin\ProfileController;
 use App\Http\Controllers\backend\AuthenticationController;
@@ -31,9 +32,18 @@ Route::prefix('admin')->group(function () {
             Route::post('profile-password/update', [ProfileController::class, 'profile_password_update'])->name('profile.password.update');
             //dashboard
             Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
-
-            Route::match(['get','post'],'member-zone', [MemberZoneController::class, 'memberZone'])->name('member-zone');
+            // member zone 
+            Route::match(['get', 'post'], 'member-zone', [MemberZoneController::class, 'memberZone'])->name('member-zone');
             Route::get('member-zone/delete/{id}', [MemberZoneController::class, 'delete'])->name('member-zone.delete');
+
+
+
+            Route::match(['get', 'post'], 'link/add', [ImportantLinkController::class, 'link_add'])->name('link.add');
+
+            Route::match(['get', 'post'], 'link/edit/{id}', [ImportantLinkController::class, 'link_edit'])->name('link.edit');
+            Route::get('link/list', [ImportantLinkController::class, 'link_list'])->name('link.list');
+            Route::get('link/delete/{id}',[ImportantLinkController::class,'link_delete'])->name('link.delete');
+
         });
     });
 });
@@ -43,7 +53,7 @@ Route::prefix('operator')->group(function () {
     // route name prefix
     Route::name('operator.')->group(function () {
         //middleware 
-            Route::middleware(OperatorAuthenticationMiddleware::class)->group(function () {
+        Route::middleware(OperatorAuthenticationMiddleware::class)->group(function () {
             Route::get('logout', [AuthenticationController::class, 'logout'])->name('logout');
             //profile 
             Route::get('profile', [OperatorProfileController::class, 'profile'])->name('profile');
