@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class=" mb-2" style="text-align:center">
-                        <h3>Advocate List</h3>
+                        <h3>Important Link List</h3>
                     </div>
                     <div class="mt-3">
                         @if (session('error'))
@@ -71,7 +71,7 @@
             let id = $(this).attr('data-delete');
             let row = $(this).closest('tr');
             $.ajax({
-                url: '/admin/advocate/delete/' + id,
+                url: '/admin/link/delete/' + id,
                 success: function(data) {
                     var data_object = JSON.parse(data);
                     if (data_object.status == 'SUCCESS') {

@@ -7,7 +7,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <h3 class=" text-center mb-2">Advocate Add</h3>
+                        <h3 class=" text-center mb-2">Important Link Add</h3>
                         @if (session('success'))
                             <div style="width:100%" class="alert alert-primary alert-dismissible fade show" role="alert">
                                 <strong> Success!</strong> {{ session('success') }}

@@ -14,7 +14,7 @@
         <ul class="nav">
             <li class="nav-item nav-category">Admin</li>
             <!--  Dashboard  -->
-            <li class="nav-item ">
+            <li class="nav-item {{ $data['active_menu'] == 'dashboard' ? 'active' : '' }}">
                 <a href="{{ route('admin.dashboard') }}" class="nav-link ">
                     <i class="fa-solid fa-chart-line"></i>
                     <span class="link-title">Dashboard</span>
@@ -22,7 +22,7 @@
             </li>
             <!-- member zone  -->
             <li
-                class="nav-item ">
+                class="nav-item {{ $data['active_menu'] == 'member_zone' ? 'active' : '' }}">
                 <a class="nav-link"  href="{{route('admin.member-zone')}}" role="button" aria-expanded="false"
                     aria-controls="member-zone">
                     <i class="fa-regular fa-user"></i>
@@ -31,7 +31,7 @@
             </li>
             <!-- Important links -->
             <li
-                class="nav-item  ">
+                class="nav-item  {{ $data['active_menu'] == 'important_link_add' || $data['active_menu'] == 'link_edit' || $data['active_menu'] == 'link_list' ? 'active' : '' }}">
                 <a class="nav-link" data-bs-toggle="collapse" href="#link" role="button" aria-expanded="false"
                     aria-controls="link">
                     <i class="fa-regular fa-user"></i>
@@ -40,12 +40,12 @@
                 </a>
                 <div class="collapse" id="link">
                     <ul class="nav sub-menu">
-                        <li class="nav-item ">
+                        <li class="nav-item {{ $data['active_menu'] == 'link_add' ? 'active' : '' }}">
                             <a href="{{route('admin.link.add')}}"
                                 class="nav-link  ">Link
                                 Add</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item {{ $data['active_menu'] == 'link_list' ? 'active' : '' }}">
                             <a href="{{route('admin.link.list')}}"
                                 class="nav-link  ">Link List</a>
                         </li>

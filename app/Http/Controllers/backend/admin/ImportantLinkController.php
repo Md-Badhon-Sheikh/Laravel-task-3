@@ -11,6 +11,7 @@ use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Support\Facades\DB;
 use PDOException;
 use Illuminate\Support\Facades\File;
+use Intervention\Image\Facades\Image;
 
 
 
@@ -34,9 +35,10 @@ class ImportantLinkController extends Controller implements HasMiddleware
             $photo = $request->file('photo');
             if ($photo) {
                 $photo_extension = $photo->getClientOriginalExtension();
-                $photo_name = 'backend_assets/images/links/'. uniqid().'.'.$photo_extension;
-
-                $photo->move(public_path('backend_assets/images/links'), basename($photo_name));
+                $photo_name = 'backend_assets/images/links/'.uniqid().'.'.$photo_extension;
+                $image = Image::make($photo);
+                // $image->resize(300,300);
+                $image->save($photo_name);
             } else {
                 $photo_name = null;
             }

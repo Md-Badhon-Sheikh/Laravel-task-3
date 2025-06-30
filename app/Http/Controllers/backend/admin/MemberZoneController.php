@@ -5,6 +5,7 @@ namespace App\Http\Controllers\backend\admin;
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\AdminAuthenticationMiddleware;
 use App\Http\Middleware\BackendAuthenticationMiddleware;
+use App\Http\Middleware\OperatorAuthenticationMiddleware;
 use App\Models\MemberZone;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
