@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\backend\admin\DashboardController;
 use App\Http\Controllers\backend\admin\ImportantLinkController;
-use App\Http\Controllers\backend\admin\MemberZoneController;
+use App\Http\Controllers\backend\admin\MemberZoneTypeController;
 use App\Http\Controllers\backend\admin\ProfileController;
 use App\Http\Controllers\backend\AuthenticationController;
 use App\Http\Controllers\backend\operator\DashboardController as OperatorDashboardController;
@@ -33,8 +33,8 @@ Route::prefix('admin')->group(function () {
             //dashboard
             Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
             // member zone 
-            Route::match(['get', 'post'], 'member-zone', [MemberZoneController::class, 'memberZone'])->name('member-zone');
-            Route::get('member-zone/delete/{id}', [MemberZoneController::class, 'delete'])->name('member-zone.delete');
+            Route::match(['get', 'post'], 'member-zone-type', [MemberZoneTypeController::class, 'memberZoneTypeList'])->name('member-zone-type');
+            Route::get('member-zone-type/delete/{id}', [MemberZoneTypeController::class, 'memberZoneTypeDelete'])->name('member-zone-type.delete');
 
 
 

@@ -82,7 +82,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('admin.member-zone') }}" method="post">
+                <form action="{{ route('admin.member-zone-type') }}" method="post">
                     @csrf
                     <div class="row">
                         <div class="col-md-4 mb-3">
@@ -112,7 +112,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('admin.member-zone') }}" method="POST">
+                <form action="{{ route('admin.member-zone-type') }}" method="POST">
                     @csrf
                     <input type="hidden" name="id" id="id">
                     <div class="row">
@@ -155,7 +155,7 @@
             let id = $(this).attr('data-delete');
             let row = $(this).closest('tr');
             $.ajax({
-                url: '/admin/member-zone/delete/' + id,
+                url: '/admin/member-zone-type/delete/' + id,
                 success: function(data) {
                     var data_object = JSON.parse(data);
                     if (data_object.status == 'SUCCESS') {

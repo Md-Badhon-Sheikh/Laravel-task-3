@@ -6,14 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Http\Middleware\AdminAuthenticationMiddleware;
 use App\Http\Middleware\BackendAuthenticationMiddleware;
 use App\Http\Middleware\OperatorAuthenticationMiddleware;
-use App\Models\MemberZone;
+use App\Models\MemberZoneType;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use PDOException;
 
-class MemberZoneController extends Controller implements HasMiddleware
+class MemberZoneTypeController extends Controller implements HasMiddleware
 {
 
     public static function middleware()
@@ -25,7 +25,7 @@ class MemberZoneController extends Controller implements HasMiddleware
     }
 
 
-    public function memberZone(Request $request)
+    public function memberZoneTypeList(Request $request)
     {
 
         if ($request->isMethod('post')) {
@@ -33,14 +33,14 @@ class MemberZoneController extends Controller implements HasMiddleware
             $id = $request->id;
             try {
                 if ($id < 1) {
-                    MemberZone::create([
+                    MemberZoneType::create([
                         'name' => $request->name,
                         'priority' => $request->priority,
                         'created_by' => Auth::user()->id,
                     ]);
                     return back()->with('success', 'Added Successfully');
                 } elseif($id > 0){
-                    $member_zone_type = MemberZone::findOrFail($id);
+                    $member_zone_type = MemberZoneType::findOrFail($id);
                     $member_zone_type->update([
                         'name' => $request->name,
                         'priority' => $request->priority,
@@ -58,9 +58,9 @@ class MemberZoneController extends Controller implements HasMiddleware
         return view('backend.admin.pages.member_zone_type', compact('data'));
     }
 
-    public function delete($id){
+    public function memberZoneTypeDelete($id){
         $server_response = ['status' => 'FAILED', 'message' => 'Not Found'];
-        $member_zone_type = MemberZone::findOrFail($id);
+        $member_zone_type = MemberZoneType::findOrFail($id);
         if($member_zone_type){
             $member_zone_type -> delete();
             $server_response = ['status'=>'SUCCESS', 'message'=> 'Deleted Successfully'];

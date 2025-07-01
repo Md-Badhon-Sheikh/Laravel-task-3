@@ -23,10 +23,10 @@
             <!-- member zone  -->
             <li
                 class="nav-item {{ $data['active_menu'] == 'member_zone' ? 'active' : '' }}">
-                <a class="nav-link"  href="{{route('admin.member-zone')}}" role="button" aria-expanded="false"
+                <a class="nav-link"  href="{{route('admin.member-zone-type')}}" role="button" aria-expanded="false"
                     aria-controls="member-zone">
                     <i class="fa-regular fa-user"></i>
-                    <span class="link-title">Member Zone Manage</span>
+                    <span class="link-title">Member Zone Type Manage</span>
                 </a>
             </li>
             <!-- Important links -->
