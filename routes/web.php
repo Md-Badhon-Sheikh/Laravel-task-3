@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\backend\admin\DashboardController;
+use App\Http\Controllers\backend\admin\DivisionController;
 use App\Http\Controllers\backend\admin\ImportantLinkController;
 use App\Http\Controllers\backend\admin\MemberZoneTypeController;
 use App\Http\Controllers\backend\admin\ProfileController;
@@ -44,6 +45,10 @@ Route::prefix('admin')->group(function () {
             Route::get('link/list', [ImportantLinkController::class, 'link_list'])->name('link.list');
             Route::get('link/delete/{id}',[ImportantLinkController::class,'link_delete'])->name('link.delete');
 
+            Route::match(['get', 'post'], 'division', [DivisionController::class, 'division_list'])->name('division');
+            Route::get('division/delete/{id}', [DivisionController::class, 'division_delete'])->name('division.delete');
+            
+            Route::match(['get', 'post'], 'zilla', [DivisionController::class, 'zilla_list'])->name('zilla');
         });
     });
 });

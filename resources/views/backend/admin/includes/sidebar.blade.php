@@ -52,6 +52,30 @@
                     </ul>
                 </div>
             </li>
+
+            <!-- Aria Manage  -->
+
+            <li
+                class="nav-item  ">
+                <a class="nav-link" data-bs-toggle="collapse" href="#division" role="button" aria-expanded="false"
+                    aria-controls="division">
+                    <i class="fa-regular fa-user"></i>
+                    <span class="link-title">Area Manage</span>
+                    <i class="fa-solid fa-chevron-down link-arrow"></i>
+                </a>
+                <div class="collapse" id="division">
+                    <ul class="nav sub-menu">
+                        <li class="nav-item ">
+                            <a href="{{route('admin.division')}}"
+                                class="nav-link  ">Division</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a href=""
+                                class="nav-link  ">Zilla</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
         </ul>
     </div>
 </nav>
