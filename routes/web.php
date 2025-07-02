@@ -5,6 +5,7 @@ use App\Http\Controllers\backend\admin\DivisionController;
 use App\Http\Controllers\backend\admin\ImportantLinkController;
 use App\Http\Controllers\backend\admin\MemberZoneTypeController;
 use App\Http\Controllers\backend\admin\ProfileController;
+use App\Http\Controllers\backend\admin\ZillaController;
 use App\Http\Controllers\backend\AuthenticationController;
 use App\Http\Controllers\backend\operator\DashboardController as OperatorDashboardController;
 use App\Http\Controllers\backend\operator\ProfileController as OperatorProfileController;
@@ -48,7 +49,9 @@ Route::prefix('admin')->group(function () {
             Route::match(['get', 'post'], 'division', [DivisionController::class, 'division_list'])->name('division');
             Route::get('division/delete/{id}', [DivisionController::class, 'division_delete'])->name('division.delete');
             
-            Route::match(['get', 'post'], 'zilla', [DivisionController::class, 'zilla_list'])->name('zilla');
+            Route::match(['get', 'post'], 'zilla', [ZillaController::class, 'zilla_list'])->name('zilla');
+            
+            Route::get('zilla/delete/{id}', [ZillaController::class, 'zilla_delete'])->name('division.delete');
         });
     });
 });

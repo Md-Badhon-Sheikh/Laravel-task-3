@@ -70,7 +70,7 @@
                                 class="nav-link  ">Division</a>
                         </li>
                         <li class="nav-item ">
-                            <a href=""
+                            <a href="{{route('admin.zilla')}}"
                                 class="nav-link  ">Zilla</a>
                         </li>
                     </ul>
