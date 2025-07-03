@@ -59,7 +59,7 @@
 
                                     </td>
                                     <td>
-                                        {{ $single_zilla->division->name_en ?? 'N/A'  }}
+                                       {{ $single_zilla->division_name ?? 'N/A' }}
 
                                     </td>
                                     <td>
@@ -68,7 +68,7 @@
                                             data-name_en="{{ $single_zilla->name_en }}"
                                             data-name_bn="{{ $single_zilla->name_bn }}"
                                             data-priority="{{ $single_zilla->priority}}"
-                                            data-priority="{{ $single_zilla->division->id ?? ''}}"
+                                            data-division="{{ $single_zilla->division_id }}"
                                             class="edit btn btn-success btn-icon"><i class="fa-solid fa-edit"></i></a>
 
                                         <a class="btn btn-danger btn-icon" data-delete="{{ $single_zilla->id }}"
@@ -188,11 +188,11 @@
         var priority = $(this).data('priority');
         var division = $(this).data('division');
 
-        $('#id').val(id);
+        $('#id').val(id); 
         $('#name_en').val(name_en);
         $('#name_bn').val(name_bn);
         $('#priority').val(priority);
-        $('#division').val(division);
+       $('#division_id').val(division);
 
     })
 </script>

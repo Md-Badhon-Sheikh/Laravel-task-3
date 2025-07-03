@@ -23,53 +23,60 @@ class ZillaController extends Controller implements HasMiddleware
         ];
     }
 
-    public function zilla_list(Request $request){
+    public function zilla_list(Request $request)
+    {
 
-        if($request->isMethod('post')){
+        if ($request->isMethod('post')) {
             $id = 0;
             $id = $request->id;
-            try{
-                if($id < 1){
+            try {
+                if ($id < 1) {
                     Zilla::create([
-                        'name_en' => $request-> name_en,
-                        'name_bn' => $request-> name_bn,
-                        'priority' => $request-> priority,
-                        'division' => $request-> division,
-
+                        'name_en' => $request->name_en,
+                        'name_bn' => $request->name_bn,
+                        'priority' => $request->priority,
+                        'division_id' => $request->division,
                         'created_by' => Auth::user()->id,
                     ]);
-                    return back()->with('success','Added Successfully');
-                } elseif($id >0){
+
+                    return back()->with('success', 'Added Successfully');
+                } elseif ($id > 0) {
                     $zilla = Zilla::find($id);
                     $zilla->update([
-                         'name_en' => $request-> name_en,
-                        'name_bn' => $request-> name_bn,
-                        'priority' => $request-> priority,
-                        'division' => $request-> division,
-
+                        'name_en' => $request->name_en,
+                        'name_bn' => $request->name_bn,
+                        'priority' => $request->priority,
+                        'division_id' => $request->division,
                         'created_by' => Auth::user()->id,
                     ]);
                     return back()->with('success', 'Updated Successfully');
                 }
-            }catch(PDOException $e){
+            } catch (PDOException $e) {
                 return back()->with('error', 'Failed Please Try again');
             }
         }
-        $data['zilla_list'] = DB::table('zillas')->get();
+        // $data['zilla_list'] = DB::table('zillas')->get();
+
+
+        $data['zilla_list'] = DB::table('zillas')
+            ->leftJoin('divisions', 'zillas.division_id', '=', 'divisions.id')
+            ->select('zillas.*', 'divisions.name_en as division_name')
+            ->get();
+
         $data['divisions'] = DB::table('divisions')->orderBy('name_en')->get();
         $data['active_menu'] = 'division';
         $data['page_title'] = 'Division';
         return view('backend.admin.pages.zilla', compact('data'));
     }
 
-    public function zilla_delete($id){
+    public function zilla_delete($id)
+    {
         $server_response = ['status' => 'FAILED', 'message' => 'Not Found'];
         $zilla = Zilla::findOrFail($id);
-        if($zilla){
-         $zilla -> delete();
-         $server_response = ['status' => 'SUCCESS', 'message' => 'delete Successfully'];
+        if ($zilla) {
+            $zilla->delete();
+            $server_response = ['status' => 'SUCCESS', 'message' => 'delete Successfully'];
         }
         echo json_encode($server_response);
     }
-
 }

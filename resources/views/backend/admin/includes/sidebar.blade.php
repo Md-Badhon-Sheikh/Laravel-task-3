@@ -73,6 +73,10 @@
                             <a href="{{route('admin.zilla')}}"
                                 class="nav-link  ">Zilla</a>
                         </li>
+                        <li class="nav-item ">
+                            <a href="{{route('admin.upozilla')}}"
+                                class="nav-link  ">Upozilla</a>
+                        </li>
                     </ul>
                 </div>
             </li>

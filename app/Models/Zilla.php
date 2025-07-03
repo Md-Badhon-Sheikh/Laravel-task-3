@@ -11,8 +11,8 @@ class Zilla extends Model
     use HasFactory;
     protected $guarded = [];
     protected $table = 'zillas';
-
-    protected $fillable = ['division_id', 'name'];
+    // protected $fillable = ['name_en', 'name_bn', 'priority', 'division', 'created_by'];
+    protected $fillable = ['division_id', 'name_en'];
 
     public function division()
     {
