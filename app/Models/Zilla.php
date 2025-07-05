@@ -12,7 +12,7 @@ class Zilla extends Model
     protected $guarded = [];
     protected $table = 'zillas';
     // protected $fillable = ['name_en', 'name_bn', 'priority', 'division', 'created_by'];
-    protected $fillable = ['division_id', 'name_en'];
+    protected $fillable = ['division_id', 'name_en', 'name_bn', 'priority', 'created_by'];
 
     public function division()
     {

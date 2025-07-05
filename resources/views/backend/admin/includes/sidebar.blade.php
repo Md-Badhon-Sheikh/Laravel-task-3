@@ -20,18 +20,43 @@
                     <span class="link-title">Dashboard</span>
                 </a>
             </li>
-            <!-- member zone  -->
+            <!-- member zone 
             <li
-                class="nav-item {{ $data['active_menu'] == 'member_zone' ? 'active' : '' }}">
-                <a class="nav-link"  href="{{route('admin.member-zone-type')}}" role="button" aria-expanded="false"
+                class="nav-item ">
+                <a class="nav-link" href="{{route('admin.member-zone-type')}}" role="button" aria-expanded="false"
                     aria-controls="member-zone">
                     <i class="fa-regular fa-user"></i>
                     <span class="link-title">Member Zone Type Manage</span>
                 </a>
+            </li> -->
+
+
+            <!-- Member manage -->
+            <li
+                class="nav-item  {{ $data['active_menu'] == 'member_zone_type' || $data['active_menu'] == 'member_zone_type_list' }}">
+                <a class="nav-link" data-bs-toggle="collapse" href="#member" role="button" aria-expanded="false"
+                    aria-controls="member">
+                    <i class="fa-regular fa-user"></i>
+                    <span class="link-title">Member Manage</span>
+                    <i class="fa-solid fa-chevron-down link-arrow"></i>
+                </a>
+                <div class="collapse" id="member">
+                    <ul class="nav sub-menu">
+                        <li class="nav-item {{ $data['active_menu'] == 'member_zone_type' ? 'active' : '' }}">
+                            <a href="{{route('admin.member-zone-type')}}"
+                                class="nav-link  ">Member Zone Type</a>
+                        </li>
+                        <li class="nav-item {{ $data['active_menu'] == 'member_zone' ? 'active' : '' }}">
+                            <a href="{{route('admin.member_zone')}}"
+                                class="nav-link  ">Member Zone</a>
+                        </li>
+                    </ul>
+                </div>
             </li>
+
             <!-- Important links -->
             <li
-                class="nav-item  {{ $data['active_menu'] == 'important_link_add' || $data['active_menu'] == 'link_edit' || $data['active_menu'] == 'link_list' ? 'active' : '' }}">
+                class="nav-item  {{ $data['active_menu'] == 'important_link' ? 'active' : '' }}">
                 <a class="nav-link" data-bs-toggle="collapse" href="#link" role="button" aria-expanded="false"
                     aria-controls="link">
                     <i class="fa-regular fa-user"></i>
@@ -52,6 +77,7 @@
                     </ul>
                 </div>
             </li>
+
 
             <!-- Aria Manage  -->
 

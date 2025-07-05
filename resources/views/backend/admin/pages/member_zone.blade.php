@@ -5,10 +5,10 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="text-center mb-2">Zilla</h3>
+                    <h3 class="text-center mb-2">Member Zone</h3>
                     <div style="text-align: right">
                         <button type="button" class="btn btn-success btn-xs addButton" data-bs-toggle="modal"
-                            data-bs-target="#AddZilla"><i class="fa-solid fa-plus"></i> Add </button>
+                            data-bs-target="#AddDivision"><i class="fa-solid fa-plus"></i> Add </button>
                     </div>
 
                     <div class="mt-3">
@@ -33,45 +33,33 @@
                             <thead>
                                 <tr>
                                     <th style="">SL</th>
-                                    <th style="">Name </th>
                                     <th style="">Name (Bangla)</th>
                                     <th style="">Priority</th>
-                                    <th style="">Division</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($data['zilla_list'] as $key => $single_zilla)
+                                @foreach ($data ['member_zone_list'] as $key => $single_member_zone)
                                 <tr>
-                                    <td>{{ $key + 1 }}</td>
+                                    <td>{{$key + 1}}</td>
 
 
                                     <td>
-                                        {{ $single_zilla->name_en }}
+                                        {{$single_member_zone-> name}}
 
                                     </td>
                                     <td>
-                                        {{ $single_zilla->name_bn }}
+                                        {{$single_member_zone-> priority}}
 
                                     </td>
                                     <td>
-                                        {{ $single_zilla->priority}}
-
-                                    </td>
-                                    <td>
-                                        {{ $single_zilla->division_name ?? 'N/A' }}
-
-                                    </td>
-                                    <td>
-                                        <a data-bs-toggle="modal" data-bs-target="#EditDivision"
-                                            data-id="{{ $single_zilla->id }}"
-                                            data-name_en="{{ $single_zilla->name_en }}"
-                                            data-name_bn="{{ $single_zilla->name_bn }}"
-                                            data-priority="{{ $single_zilla->priority}}"
-                                            data-division="{{ $single_zilla->division_id }}"
+                                        <a data-bs-toggle="modal" data-bs-target="#EditMemberZone"
+                                            data-id="{{$single_member_zone-> id}}"
+                                            data-name="{{$single_member_zone-> name}}"
+                                            data-priority="{{$single_member_zone-> priority}}"
                                             class="edit btn btn-success btn-icon"><i class="fa-solid fa-edit"></i></a>
 
-                                        <a class="btn btn-danger btn-icon" data-delete="{{ $single_zilla->id }}"
+                                        <a class="btn btn-danger btn-icon" data-delete="{{$single_member_zone-> id}}"
                                             id="delete"><i class="fa-solid fa-trash"></i> </a>
                                     </td>
                                 </tr>
@@ -80,47 +68,31 @@
                         </table>
                     </div>
 
-
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="modal fade" id="AddZilla" tabindex="-1" aria-labelledby="AddZilla" aria-hidden="true">
+<div class="modal fade" id="AddDivision" tabindex="-1" aria-labelledby="AddDivision" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header text-center">
-                <h6 class="title" id="defaultModalLabel"> ADD Zilla </h6>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
+                <h6 class="title" id="defaultModalLabel">ADD Member Zone</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{route('admin.zilla')}}" method="post" accept-charset="UTF-8">
+                <form action="{{ route('admin.member-zone-type') }}" method="post">
                     @csrf
                     <div class="row">
-                        <div class="col-md-4">
-                            <label class="form-label" for="">Name (English)*</label>
-                            <input type="text" class="form-control" placeholder="Enter Name" name="name_en" required>
-                        </div>
                         <div class="col-md-4 mb-3">
                             <label class="form-label" for="">Name (Bangla)*</label>
-                            <input type="text" class="form-control" placeholder="Enter Name" name="name_bn" required>
+                            <input type="text" class="form-control" placeholder="Enter Name" name="name" required>
                         </div>
                         <div class="col-md-4 mb-3">
                             <label class="form-label" for="">Priority *</label>
                             <input type="number" class="form-control" placeholder="Enter Priority" name="priority" required>
                         </div>
-                        <div class="mb-3">
-                            <label for="division_id" class="form-label">Select Division</label>
-                            <select name="division" id="division_id" class="form-control" required>
-                                <option value="">-- Select Division --</option>
-                                @foreach($data['divisions'] as $division)
-                                <option value="{{ $division->id }}">{{ $division->name_en }}</option>
-                                @endforeach
-                            </select>
-                            @error('division_id') <small class="text-danger">{{ $message }}</small> @enderror
-                        </div>
-
                         <div class="col-12 text-center mt-3">
                             <button class="btn btn-xs btn-success" type="submit">Save</button>
                         </div>
@@ -132,42 +104,26 @@
 </div>
 
 
-<div class="modal fade" id="EditDivision" tabindex="-1" aria-labelledby="EditDivision" aria-hidden="true">
+<div class="modal fade" id="EditMemberZone" tabindex="-1" aria-labelledby="EditMemberZone" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header text-center">
-                <h6 class="title" id="defaultModalLabel">Update Zilla</h6>
+                <h6 class="title" id="defaultModalLabel">Update Division</h6>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{route('admin.zilla')}}" method="POST" >
+                <form action="{{ route('admin.member-zone-type') }}" method="POST">
                     @csrf
+                    <input type="hidden" name="id" id="id">
                     <div class="row">
-                        <div class="col-md-4">
-                            <label class="form-label">Name (English)*</label>
-                            <input type="hidden" name="id" id="id">
-
-                            <input type="text" class="form-control" placeholder="Enter Name" name="name_en" id="name_en" required>
-                        </div>
                         <div class="col-md-4 mb-3">
                             <label class="form-label" for="">Name (Bangla)*</label>
-                            <input type="text" class="form-control" placeholder="Enter Name" name="name_bn" id="name_bn" required>
+                            <input type="text" class="form-control" placeholder="Enter Zone Name" name="name" id="name" required>
                         </div>
                         <div class="col-md-4 mb-3">
                             <label class="form-label" for="">Priority *</label>
                             <input type="number" class="form-control" placeholder="Enter Priority" name="priority" id="priority" required>
                         </div>
-                        <div class="mb-3">
-                            <label for="division_id" class="form-label">Select Division</label>
-                            <select name="division" id="edit_division_id" class="form-control" required>
-                                <option value="">-- Select Division --</option>
-                                @foreach($data['divisions'] as $division)
-                                <option value="{{ $division->id }}">{{ $division->name_en }}</option>
-                                @endforeach
-                            </select>
-                            @error('division_id') <small class="text-danger">{{ $message }}</small> @enderror
-                        </div>
-
                         <div class="col-12 text-center mt-3">
                             <button type="submit" class="btn btn-success">Update</button>
                         </div>
@@ -178,21 +134,19 @@
     </div>
 </div>
 
+
 @endsection
 @push('js')
 <script>
     $(document).on('click', '.edit', function() {
         var id = $(this).data('id');
-        var name_en = $(this).data('name_en');
-        var name_bn = $(this).data('name_bn');
+        var name = $(this).data('name');
         var priority = $(this).data('priority');
-        var division = $(this).data('division');
 
         $('#id').val(id);
-        $('#name_en').val(name_en);
-        $('#name_bn').val(name_bn);
+        $('#name').val(name);
         $('#priority').val(priority);
-        $('#edit_division_id').val(division);
+
     })
 </script>
 <script>
@@ -201,7 +155,7 @@
             let id = $(this).attr('data-delete');
             let row = $(this).closest('tr');
             $.ajax({
-                url: '/admin/zilla/delete/' + id,
+                url: '/admin/member-zone-type/delete/' + id,
                 success: function(data) {
                     var data_object = JSON.parse(data);
                     if (data_object.status == 'SUCCESS') {
@@ -228,14 +182,5 @@
             });
         }
     });
-    $(function() {
-        $('#division_id').select2({
-            dropdownParent: $('#AddZilla')
-        });
-        $('#edit_division_id').select2({
-            dropdownParent: $('#EditDivision')
-        });
-    });
 </script>
-
 @endpush

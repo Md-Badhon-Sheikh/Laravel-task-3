@@ -64,8 +64,8 @@ class ZillaController extends Controller implements HasMiddleware
             ->get();
 
         $data['divisions'] = DB::table('divisions')->orderBy('name_en')->get();
-        $data['active_menu'] = 'division';
-        $data['page_title'] = 'Division';
+        $data['active_menu'] = 'zilla';
+        $data['page_title'] = 'Zilla';
         return view('backend.admin.pages.zilla', compact('data'));
     }
 

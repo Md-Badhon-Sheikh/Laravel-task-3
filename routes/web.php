@@ -55,6 +55,8 @@ Route::prefix('admin')->group(function () {
             Route::get('zilla/delete/{id}', [ZillaController::class, 'zilla_delete'])->name('division.delete');
            
             Route::match(['get', 'post'], 'upozilla', [UpozillaController::class, 'upozilla_list'])->name('upozilla');
+
+            Route::match(['get', 'post'], 'member_zone', [UpozillaController::class, 'member_zone'])->name('member_zone');
         });
     });
 });
