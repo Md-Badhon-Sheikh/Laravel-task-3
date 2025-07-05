@@ -98,19 +98,19 @@
                 <form action="{{route('admin.zilla')}}" method="post" accept-charset="UTF-8">
                     @csrf
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-3 mb-3">
                             <label class="form-label" for="">Name (English)*</label>
                             <input type="text" class="form-control" placeholder="Enter Name" name="name_en" required>
                         </div>
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-3 mb-3">
                             <label class="form-label" for="">Name (Bangla)*</label>
                             <input type="text" class="form-control" placeholder="Enter Name" name="name_bn" required>
                         </div>
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-3 mb-3">
                             <label class="form-label" for="">Priority *</label>
                             <input type="number" class="form-control" placeholder="Enter Priority" name="priority" required>
                         </div>
-                        <div class="mb-3">
+                        <div class="col-md-3 mb-3">
                             <label for="division_id" class="form-label">Select Division</label>
                             <select name="division" id="division_id" class="form-control" required>
                                 <option value="">-- Select Division --</option>
@@ -143,21 +143,21 @@
                 <form action="{{route('admin.zilla')}}" method="POST" >
                     @csrf
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-3 mb-3">
                             <label class="form-label">Name (English)*</label>
                             <input type="hidden" name="id" id="id">
 
                             <input type="text" class="form-control" placeholder="Enter Name" name="name_en" id="name_en" required>
                         </div>
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-3 mb-3">
                             <label class="form-label" for="">Name (Bangla)*</label>
                             <input type="text" class="form-control" placeholder="Enter Name" name="name_bn" id="name_bn" required>
                         </div>
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-3 mb-3">
                             <label class="form-label" for="">Priority *</label>
                             <input type="number" class="form-control" placeholder="Enter Priority" name="priority" id="priority" required>
                         </div>
-                        <div class="mb-3">
+                        <div class="col-md-3 mb-3">
                             <label for="division_id" class="form-label">Select Division</label>
                             <select name="division" id="edit_division_id" class="form-control" required>
                                 <option value="">-- Select Division --</option>

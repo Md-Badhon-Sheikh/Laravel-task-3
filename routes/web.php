@@ -3,6 +3,7 @@
 use App\Http\Controllers\backend\admin\DashboardController;
 use App\Http\Controllers\backend\admin\DivisionController;
 use App\Http\Controllers\backend\admin\ImportantLinkController;
+use App\Http\Controllers\backend\admin\MemberZoneController;
 use App\Http\Controllers\backend\admin\MemberZoneTypeController;
 use App\Http\Controllers\backend\admin\ProfileController;
 use App\Http\Controllers\backend\admin\UpozillaController;
@@ -56,7 +57,7 @@ Route::prefix('admin')->group(function () {
            
             Route::match(['get', 'post'], 'upozilla', [UpozillaController::class, 'upozilla_list'])->name('upozilla');
 
-            Route::match(['get', 'post'], 'member_zone', [UpozillaController::class, 'member_zone'])->name('member_zone');
+            Route::match(['get', 'post'], 'member_zone', [MemberZoneController::class, 'member_zone'])->name('member_zone');
         });
     });
 });

@@ -33,37 +33,35 @@
                             <thead>
                                 <tr>
                                     <th style="">SL</th>
-                                    <th style="">Name (Bangla)</th>
-                                    <th style="">Priority</th>
+                                    <th style="">Zone Name (Bangla)</th>
+                                    <th style="">Zilla</th>
+                                    <th style="">Division</th>
+                                    <th style="">Zone Type</th>
+                                    <th style="">Members</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($data ['member_zone_list'] as $key => $single_member_zone)
+
                                 <tr>
-                                    <td>{{$key + 1}}</td>
-
-
-                                    <td>
-                                        {{$single_member_zone-> name}}
-
-                                    </td>
-                                    <td>
-                                        {{$single_member_zone-> priority}}
-
-                                    </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
                                     <td>
                                         <a data-bs-toggle="modal" data-bs-target="#EditMemberZone"
-                                            data-id="{{$single_member_zone-> id}}"
-                                            data-name="{{$single_member_zone-> name}}"
-                                            data-priority="{{$single_member_zone-> priority}}"
+                                            data-id=""
+                                            data-name=""
+                                            data-priority=""
                                             class="edit btn btn-success btn-icon"><i class="fa-solid fa-edit"></i></a>
 
-                                        <a class="btn btn-danger btn-icon" data-delete="{{$single_member_zone-> id}}"
+                                        <a class="btn btn-danger btn-icon" data-delete=""
                                             id="delete"><i class="fa-solid fa-trash"></i> </a>
                                     </td>
                                 </tr>
-                                @endforeach
+
                             </tbody>
                         </table>
                     </div>
@@ -82,17 +80,41 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('admin.member-zone-type') }}" method="post">
+                <form action=" " method="post">
                     @csrf
                     <div class="row">
-                        <div class="col-md-4 mb-3">
-                            <label class="form-label" for="">Name (Bangla)*</label>
+                        <div class="col-md-3 mb-3">
+                            <label class="form-label" for="">Zone Name (Bangla)*</label>
                             <input type="text" class="form-control" placeholder="Enter Name" name="name" required>
                         </div>
-                        <div class="col-md-4 mb-3">
-                            <label class="form-label" for="">Priority *</label>
-                            <input type="number" class="form-control" placeholder="Enter Priority" name="priority" required>
+
+                        <div class="col-md-3 mb-3">
+                            <label for="division_id" class="form-label">Zilla*</label>
+                            <select name="zilla" id="edit_zilla_id" class="form-control" required>
+                                <option value="">-- Select Zilla --</option>
+
+                            </select>
+                            @error('zilla_id') <small class="text-danger">{{ $message }}</small> @enderror
                         </div>
+
+                        <div class="col-md-3 mb-3">
+                            <label for="division_id" class="form-label">Division*</label>
+                            <select name="division" id="edit_division_id" class="form-control" required>
+                                <option value="">-- Select Division --</option>
+                             
+                            </select>
+                            @error('division_id') <small class="text-danger">{{ $message }}</small> @enderror
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+                            <label for="division_id" class="form-label">Member Zone Type*</label>
+                            <select name="division" id="edit_division_id" class="form-control" required>
+                                <option value="">-- Member Zone Type --</option>
+                             
+                            </select>
+                            @error('division_id') <small class="text-danger">{{ $message }}</small> @enderror
+                        </div>
+
                         <div class="col-12 text-center mt-3">
                             <button class="btn btn-xs btn-success" type="submit">Save</button>
                         </div>
@@ -112,7 +134,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('admin.member-zone-type') }}" method="POST">
+                <form action=" " method="POST">
                     @csrf
                     <input type="hidden" name="id" id="id">
                     <div class="row">

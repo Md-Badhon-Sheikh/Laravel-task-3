@@ -19,6 +19,16 @@ class MemberZoneController extends Controller implements HasMiddleware
     }
 
     public function member_zone(){
-        return view('backend.admin.pages.member_zone');
+        $data = [];
+        $data['active_menu'] = 'member-zone';
+        $data['page_title'] = 'Member Zone';
+        
+        
+        $data['member-zone'] = \App\Models\MemberZone::all();
+
+        return view('backend.admin.pages.member_zone', compact('data'));
     }
+
+    
+
 }

@@ -33,7 +33,7 @@
 
             <!-- Member manage -->
             <li
-                class="nav-item  {{ $data['active_menu'] == 'member_zone_type' || $data['active_menu'] == 'member_zone_type_list' }}">
+                class="nav-item  ">
                 <a class="nav-link" data-bs-toggle="collapse" href="#member" role="button" aria-expanded="false"
                     aria-controls="member">
                     <i class="fa-regular fa-user"></i>
@@ -42,11 +42,11 @@
                 </a>
                 <div class="collapse" id="member">
                     <ul class="nav sub-menu">
-                        <li class="nav-item {{ $data['active_menu'] == 'member_zone_type' ? 'active' : '' }}">
+                        <li class="nav-item">
                             <a href="{{route('admin.member-zone-type')}}"
                                 class="nav-link  ">Member Zone Type</a>
                         </li>
-                        <li class="nav-item {{ $data['active_menu'] == 'member_zone' ? 'active' : '' }}">
+                        <li class="nav-item ">
                             <a href="{{route('admin.member_zone')}}"
                                 class="nav-link  ">Member Zone</a>
                         </li>
