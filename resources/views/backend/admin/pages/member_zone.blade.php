@@ -8,7 +8,7 @@
                     <h3 class="text-center mb-2">Member Zone</h3>
                     <div style="text-align: right">
                         <button type="button" class="btn btn-success btn-xs addButton" data-bs-toggle="modal"
-                            data-bs-target="#AddDivision"><i class="fa-solid fa-plus"></i> Add </button>
+                            data-bs-target="#AddMemberZone"><i class="fa-solid fa-plus"></i> Add </button>
                     </div>
 
                     <div class="mt-3">
@@ -54,12 +54,14 @@
                                     <td> </td>
                                     <td>
                                         <a data-bs-toggle="modal" data-bs-target="#EditMemberZone"
-                                            data-id=""
-                                            data-name=""
-                                            data-priority=""
+                                            data-id="{{$single_member_zone -> id}}"
+                                            data-zone_name="{{$single_member_zone -> zone_name}}"
+                                            data-zilla="{{$single_member_zone -> zilla_id}}"
+                                            data-division="{{$single_member_zone -> division_id}}"
+                                            data-member_zone_type="{{$single_member_zone -> member_zone_type_id}}"
                                             class="edit btn btn-success btn-icon"><i class="fa-solid fa-edit"></i></a>
 
-                                        <a class="btn btn-danger btn-icon" data-delete=""
+                                        <a class="btn btn-danger btn-icon" data-delete="{{$single_member_zone->id}}"
                                             id="delete"><i class="fa-solid fa-trash"></i> </a>
                                     </td>
                                 </tr>
@@ -74,7 +76,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="AddDivision" tabindex="-1" aria-labelledby="AddDivision" aria-hidden="true">
+<div class="modal fade" id="AddMemberZone" tabindex="-1" aria-labelledby="AddMemberZone" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header text-center">
@@ -91,37 +93,35 @@
                         </div>
 
                         <div class="col-md-3 mb-3">
-                            <label for="zilla_id" class="form-label">Zilla*</label>
-                            <select name="zilla" id="zilla_id" class="form-control" required>
+                            <label class="form-label" for="">Zilla*</label>
+                            <select name="zilla" id="add_zilla_id" class="form-control" required>
                                 <option value="">-- Select Zilla --</option>
                                 @foreach($data['zillas'] as $zilla)
                                 <option value="{{$zilla->id}}">{{$zilla->name_en}}</option>
                                 @endforeach
                             </select>
-                            @error('zilla_id') <small class="text-danger">{{ $message }}</small> @enderror
                         </div>
 
                         <div class="col-md-3 mb-3">
-                            <label for="division_id" class="form-label">Division*</label>
-                            <select name="division" id="division_id" class="form-control" required>
+                            <label class="form-label" for="">Division*</label>
+                            <select name="division" id="add_division_id" class="form-control" required>
                                 <option value="">-- Select Division --</option>
                                 @foreach($data['divisions'] as $division)
                                 <option value="{{ $division->id }}">{{ $division->name_en }}</option>
                                 @endforeach
                             </select>
-                            @error('division_id') <small class="text-danger">{{ $message }}</small> @enderror
                         </div>
 
                         <div class="col-md-3 mb-3">
-                            <label for="division_id" class="form-label">Member Zone Type*</label>
-                            <select name="division" id="member_zone_id" class="form-control" required>
+                            <label class="form-label" for="">Member Zone Type*</label>
+                            <select name="member_zone_type" id="add_member_zone_type_id" class="form-control" required>
                                 <option value="">-- Member Zone Type --</option>
                                 @foreach($data['member_zone_types'] as $member_zone_type)
                                 <option value="{{$member_zone_type->id}}">{{$member_zone_type->name}}</option>
                                 @endforeach
                             </select>
-                            @error('division_id') <small class="text-danger">{{ $message }}</small> @enderror
                         </div>
+
 
                         <div class="col-12 text-center mt-3">
                             <button class="btn btn-xs btn-success" type="submit">Save</button>
@@ -147,11 +147,11 @@
                     <input type="hidden" name="id" id="id">
                     <div class="row">
                         <div class="col-md-3 mb-3">
-                            <label class="form-label" for="">Name (Bangla)*</label>
-                            <input type="text" class="form-control" placeholder="Enter Zone Name" name="name" id="name" required>
+                            <label class="form-label" for="">Zone Name (Bangla)*</label>
+                            <input type="text" class="form-control" placeholder="Enter Zone Name" name="zone_name" id="zone_name" required>
                         </div>
                         <div class="col-md-3 mb-3">
-                            <label for="division_id" class="form-label">Zilla*</label>
+                            <label for="zilla_id" class="form-label">Zilla*</label>
                             <select name="zilla" id="edit_zilla_id" class="form-control" required>
                                 <option value="">-- Select Zilla --</option>
                                 @foreach($data['zillas'] as $zilla)
@@ -163,7 +163,7 @@
 
                         <div class="col-md-3 mb-3">
                             <label for="division_id" class="form-label">Division*</label>
-                            <select name="division" id="division_id" class="form-control" required>
+                            <select name="division" id="edit_division_id" class="form-control" required>
                                 <option value="">-- Select Division --</option>
                                 @foreach($data['divisions'] as $division)
                                 <option value="{{ $division->id }}">{{ $division->name_en }}</option>
@@ -173,8 +173,8 @@
                         </div>
 
                         <div class="col-md-3 mb-3">
-                            <label for="division_id" class="form-label">Member Zone Type*</label>
-                            <select name="division" id="edit_division_id" class="form-control" required>
+                            <label for="member_zone_type_id" class="form-label">Member Zone Type*</label>
+                            <select name="member_zone_type" id="edit_member_zone_type_id" class="form-control" required>
                                 <option value="">-- Member Zone Type --</option>
                                 @foreach($data['member_zone_types'] as $member_zone_type)
                                 <option value="{{$member_zone_type->id}}">{{$member_zone_type->name}}</option>
@@ -199,14 +199,17 @@
 <script>
     $(document).on('click', '.edit', function() {
         var id = $(this).data('id');
-        var name = $(this).data('name');
-        var priority = $(this).data('priority');
+        var zone_name = $(this).data('zone_name');
+        var zilla_id = $(this).data('zilla');
+        var division_id = $(this).data('division');
+        var member_zone_type_id = $(this).data('member_zone_type');
 
         $('#id').val(id);
-        $('#name').val(name);
-        $('#priority').val(priority);
-
-    })
+        $('#zone_name').val(zone_name);
+        $('#edit_zilla_id').val(zilla_id).trigger('change');
+        $('#edit_division_id').val(division_id).trigger('change');
+        $('#edit_member_zone_type_id').val(member_zone_type_id).trigger('change');
+    });
 </script>
 <script>
     $(document).on('click', '#delete', function() {
@@ -214,7 +217,7 @@
             let id = $(this).attr('data-delete');
             let row = $(this).closest('tr');
             $.ajax({
-                url: '/admin/member-zone-type/delete/' + id,
+                url: '/admin/member_zone/delete/' + id,
                 success: function(data) {
                     var data_object = JSON.parse(data);
                     if (data_object.status == 'SUCCESS') {
@@ -242,4 +245,34 @@
         }
     });
 </script>
+<script src="{{ asset('backend_assets/vendors/select2/select2.min.js') }}"></script>
+
+
+<script src="{{ asset('backend_assets/js/select2.js') }}"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+<script>
+    $(function() {
+        $('#add_zilla_id').select2({
+            dropdownParent: $('#AddMemberZone')
+        });
+        $('#add_division_id').select2({
+            dropdownParent: $('#AddMemberZone')
+        });
+        $('#add_member_zone_type_id').select2({
+            dropdownParent: $('#AddMemberZone')
+        });
+        $('#edit_zilla_id').select2({
+            dropdownParent: $('#EditMemberZone')
+        });
+        $('#edit_division_id').select2({
+            dropdownParent: $('#EditMemberZone')
+        });
+        $('#edit_member_zone_type_id').select2({
+            dropdownParent: $('#EditMemberZone')
+        });
+    });
+</script>
+
 @endpush

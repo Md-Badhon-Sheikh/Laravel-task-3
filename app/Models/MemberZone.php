@@ -12,7 +12,9 @@ class MemberZone extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    protected $table = 'divisions';
+    protected $table = 'member_zones';
+    protected $fillable = ['zone_name', 'zilla_id', 'division_id', 'member_zone_type_id', 'created_by'];
+
 
 
     public function zilla()

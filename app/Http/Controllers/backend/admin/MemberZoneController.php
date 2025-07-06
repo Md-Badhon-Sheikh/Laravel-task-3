@@ -5,9 +5,13 @@ namespace App\Http\Controllers\backend\admin;
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\AdminAuthenticationMiddleware;
 use App\Http\Middleware\BackendAuthenticationMiddleware;
+use App\Models\Division;
+use App\Models\MemberZone;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use PDOException;
 
 class MemberZoneController extends Controller implements HasMiddleware
 {
@@ -19,8 +23,37 @@ class MemberZoneController extends Controller implements HasMiddleware
         ];
     }
 
-    public function member_zone()
+    public function member_zone(Request $request)
     {
+        if($request->isMethod('post')){
+            $id = 0;
+            $id = $request->id;
+            try{
+                if($id < 1){
+                    MemberZone::create([
+                        'zone_name' => $request->zone_name,
+                        'zilla_id' => $request->zilla,
+                        'division_id' => $request->division,
+                        'member_zone_type_id' => $request->member_zone_type,
+                        'created_by' => Auth::user()->id,
+                    ]);
+                    return back()->with('success', 'Added Successfully');
+                }elseif($id > 0){
+                    $memberZone = MemberZone::findOrFail($id);
+                    $memberZone -> update([
+                        'zone_name' => $request->zone_name,
+                        'zilla_id' => $request->zilla,
+                        'division_id' => $request->division,
+                        'member_zone_type_id' => $request->member_zone_type,
+                        'created_by' => Auth::user()->id,
+                    ]);
+                    return back()->with('success','Update Successfully');
+                }
+            }catch(PDOException $e){
+                return back()->with('error', 'Failed Please Try again');
+            }
+        }
+
         $data = [];
         $data['active_menu'] = 'member-zone';
         $data['page_title'] = 'Member Zone';
@@ -44,5 +77,19 @@ class MemberZoneController extends Controller implements HasMiddleware
             $data['member_zone_types'] = DB::table('member_zone_types')->get();
 
         return view('backend.admin.pages.member_zone', compact('data'));
+    }
+
+
+    // delete 
+
+    public function member_zone_delete($id){
+        $server_response = ['status' => "FAILED", 'message' => 'Not Found'];
+        $memberZone = MemberZone::findOrFail($id);
+        if($memberZone){
+            $memberZone-> delete();
+            $server_response = ['status' => 'SUCCESS', 'message' => 'delete Successfully'];
+        }
+        echo json_encode($server_response);
+
     }
 }

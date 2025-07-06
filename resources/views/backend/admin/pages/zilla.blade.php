@@ -63,7 +63,7 @@
 
                                     </td>
                                     <td>
-                                        <a data-bs-toggle="modal" data-bs-target="#EditDivision"
+                                        <a data-bs-toggle="modal" data-bs-target="#EditZilla"
                                             data-id="{{ $single_zilla->id }}"
                                             data-name_en="{{ $single_zilla->name_en }}"
                                             data-name_bn="{{ $single_zilla->name_bn }}"
@@ -132,7 +132,7 @@
 </div>
 
 
-<div class="modal fade" id="EditDivision" tabindex="-1" aria-labelledby="EditDivision" aria-hidden="true">
+<div class="modal fade" id="EditZilla" tabindex="-1" aria-labelledby="EditZilla" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header text-center">
@@ -186,13 +186,13 @@
         var name_en = $(this).data('name_en');
         var name_bn = $(this).data('name_bn');
         var priority = $(this).data('priority');
-        var division = $(this).data('division');
+        var division_id = $(this).data('division');
 
         $('#id').val(id);
         $('#name_en').val(name_en);
         $('#name_bn').val(name_bn);
         $('#priority').val(priority);
-        $('#edit_division_id').val(division);
+        $('#edit_division_id').val(division_id).trigger('change');
     })
 </script>
 <script>
@@ -233,7 +233,7 @@
             dropdownParent: $('#AddZilla')
         });
         $('#edit_division_id').select2({
-            dropdownParent: $('#EditDivision')
+            dropdownParent: $('#EditZilla')
         });
     });
 </script>

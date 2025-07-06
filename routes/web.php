@@ -54,10 +54,12 @@ Route::prefix('admin')->group(function () {
             Route::match(['get', 'post'], 'zilla', [ZillaController::class, 'zilla_list'])->name('zilla');
             
             Route::get('zilla/delete/{id}', [ZillaController::class, 'zilla_delete'])->name('division.delete');
-           
+            
             Route::match(['get', 'post'], 'upozilla', [UpozillaController::class, 'upozilla_list'])->name('upozilla');
-
+            
             Route::match(['get', 'post'], 'member_zone', [MemberZoneController::class, 'member_zone'])->name('member_zone');
+            
+            Route::get('member_zone/delete/{id}', [MemberZoneController::class, 'member_zone_delete'])->name('member_zone.delete');
         });
     });
 });

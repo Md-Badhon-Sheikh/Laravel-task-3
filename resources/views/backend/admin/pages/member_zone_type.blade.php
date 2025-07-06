@@ -5,7 +5,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="text-center mb-2">Member Zone</h3>
+                    <h3 class="text-center mb-2">Member Zone Type</h3>
                     <div style="text-align: right">
                         <button type="button" class="btn btn-success btn-xs addButton" data-bs-toggle="modal"
                             data-bs-target="#AddDivision"><i class="fa-solid fa-plus"></i> Add </button>
