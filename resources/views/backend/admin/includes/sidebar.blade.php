@@ -20,20 +20,11 @@
                     <span class="link-title">Dashboard</span>
                 </a>
             </li>
-            <!-- member zone 
-            <li
-                class="nav-item ">
-                <a class="nav-link" href="{{route('admin.member-zone-type')}}" role="button" aria-expanded="false"
-                    aria-controls="member-zone">
-                    <i class="fa-regular fa-user"></i>
-                    <span class="link-title">Member Zone Type Manage</span>
-                </a>
-            </li> -->
-
+ 
 
             <!-- Member manage -->
             <li
-                class="nav-item  ">
+                class="nav-item  {{ $data['active_menu'] == 'member-zone-type' || $data['active_menu'] == 'member_zone' ? 'active' : '' }}">
                 <a class="nav-link" data-bs-toggle="collapse" href="#member" role="button" aria-expanded="false"
                     aria-controls="member">
                     <i class="fa-regular fa-user"></i>
@@ -44,11 +35,11 @@
                     <ul class="nav sub-menu">
                         <li class="nav-item">
                             <a href="{{route('admin.member-zone-type')}}"
-                                class="nav-link  ">Member Zone Type</a>
+                                class="nav-link  {{ $data['active_menu'] == 'member-zone-type' ? 'active' : '' }}">Member Zone Type</a>
                         </li>
                         <li class="nav-item ">
                             <a href="{{route('admin.member_zone')}}"
-                                class="nav-link  ">Member Zone</a>
+                                class="nav-link {{ $data['active_menu'] == 'member_zone' ? 'active' : '' }}">Member Zone</a>
                         </li>
                     </ul>
                 </div>
@@ -56,7 +47,7 @@
 
             <!-- Important links -->
             <li
-                class="nav-item  {{ $data['active_menu'] == 'important_link' ? 'active' : '' }}">
+                class="nav-item  {{ $data['active_menu'] == 'link_add' || $data['active_menu'] == 'link_edit' || $data['active_menu'] == 'link_list' ? 'active' : '' }}">
                 <a class="nav-link" data-bs-toggle="collapse" href="#link" role="button" aria-expanded="false"
                     aria-controls="link">
                     <i class="fa-regular fa-user"></i>
@@ -65,7 +56,7 @@
                 </a>
                 <div class="collapse" id="link">
                     <ul class="nav sub-menu">
-                        <li class="nav-item {{ $data['active_menu'] == 'link_add' ? 'active' : '' }}">
+                        <li class="nav-item {{ $data['active_menu'] == 'link_edit' ? 'active' : '' }}">
                             <a href="{{route('admin.link.add')}}"
                                 class="nav-link  ">Link
                                 Add</a>
@@ -82,7 +73,7 @@
             <!-- Aria Manage  -->
 
             <li
-                class="nav-item  ">
+                class="nav-item  {{ $data['active_menu'] == 'zilla' || $data['active_menu'] == 'division' ? 'active' : '' }}">
                 <a class="nav-link" data-bs-toggle="collapse" href="#division" role="button" aria-expanded="false"
                     aria-controls="division">
                     <i class="fa-regular fa-user"></i>
@@ -91,11 +82,11 @@
                 </a>
                 <div class="collapse" id="division">
                     <ul class="nav sub-menu">
-                        <li class="nav-item ">
+                        <li class="nav-item {{ $data['active_menu'] == 'division' ? 'active' : '' }}">
                             <a href="{{route('admin.division')}}"
                                 class="nav-link  ">Division</a>
                         </li>
-                        <li class="nav-item ">
+                        <li class="nav-item {{ $data['active_menu'] == 'zilla' ? 'active' : '' }}">
                             <a href="{{route('admin.zilla')}}"
                                 class="nav-link  ">Zilla</a>
                         </li>
