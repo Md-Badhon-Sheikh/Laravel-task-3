@@ -43,12 +43,14 @@
                             </thead>
                             <tbody>
 
+                                @foreach($data['member_zone_list'] as $key => $single_member_zone)
                                 <tr>
-                                    <td> </td>
-                                    <td> </td>
-                                    <td> </td>
-                                    <td> </td>
-                                    <td> </td>
+                                    <td>{{ $key + 1 }}</td>
+                                    <td>{{ $single_member_zone -> zone_name }}</td>
+                                    <td>{{ $single_member_zone -> zilla_name ?? 'N/A' }}</td>
+                                    <td>{{ $single_member_zone -> division_name ?? 'N/A' }}</td>
+                                    <td>{{ $single_member_zone -> type_name ?? 'N/A' }}</td>
+
                                     <td> </td>
                                     <td>
                                         <a data-bs-toggle="modal" data-bs-target="#EditMemberZone"
@@ -61,7 +63,7 @@
                                             id="delete"><i class="fa-solid fa-trash"></i> </a>
                                     </td>
                                 </tr>
-
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -80,37 +82,43 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
             </div>
             <div class="modal-body">
-                <form action=" " method="post">
+                <form action="{{route('admin.member_zone')}}" method="post">
                     @csrf
                     <div class="row">
                         <div class="col-md-3 mb-3">
                             <label class="form-label" for="">Zone Name (Bangla)*</label>
-                            <input type="text" class="form-control" placeholder="Enter Name" name="name" required>
+                            <input type="text" class="form-control" placeholder="Enter Name" name="zone_name" required>
                         </div>
 
                         <div class="col-md-3 mb-3">
-                            <label for="division_id" class="form-label">Zilla*</label>
-                            <select name="zilla" id="edit_zilla_id" class="form-control" required>
+                            <label for="zilla_id" class="form-label">Zilla*</label>
+                            <select name="zilla" id="zilla_id" class="form-control" required>
                                 <option value="">-- Select Zilla --</option>
-
+                                @foreach($data['zillas'] as $zilla)
+                                <option value="{{$zilla->id}}">{{$zilla->name_en}}</option>
+                                @endforeach
                             </select>
                             @error('zilla_id') <small class="text-danger">{{ $message }}</small> @enderror
                         </div>
 
                         <div class="col-md-3 mb-3">
                             <label for="division_id" class="form-label">Division*</label>
-                            <select name="division" id="edit_division_id" class="form-control" required>
+                            <select name="division" id="division_id" class="form-control" required>
                                 <option value="">-- Select Division --</option>
-                             
+                                @foreach($data['divisions'] as $division)
+                                <option value="{{ $division->id }}">{{ $division->name_en }}</option>
+                                @endforeach
                             </select>
                             @error('division_id') <small class="text-danger">{{ $message }}</small> @enderror
                         </div>
 
                         <div class="col-md-3 mb-3">
                             <label for="division_id" class="form-label">Member Zone Type*</label>
-                            <select name="division" id="edit_division_id" class="form-control" required>
+                            <select name="division" id="member_zone_id" class="form-control" required>
                                 <option value="">-- Member Zone Type --</option>
-                             
+                                @foreach($data['member_zone_types'] as $member_zone_type)
+                                <option value="{{$member_zone_type->id}}">{{$member_zone_type->name}}</option>
+                                @endforeach
                             </select>
                             @error('division_id') <small class="text-danger">{{ $message }}</small> @enderror
                         </div>
@@ -134,18 +142,47 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
             </div>
             <div class="modal-body">
-                <form action=" " method="POST">
+                <form action="{{route('admin.member_zone')}} " method="POST">
                     @csrf
                     <input type="hidden" name="id" id="id">
                     <div class="row">
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-3 mb-3">
                             <label class="form-label" for="">Name (Bangla)*</label>
                             <input type="text" class="form-control" placeholder="Enter Zone Name" name="name" id="name" required>
                         </div>
-                        <div class="col-md-4 mb-3">
-                            <label class="form-label" for="">Priority *</label>
-                            <input type="number" class="form-control" placeholder="Enter Priority" name="priority" id="priority" required>
+                        <div class="col-md-3 mb-3">
+                            <label for="division_id" class="form-label">Zilla*</label>
+                            <select name="zilla" id="edit_zilla_id" class="form-control" required>
+                                <option value="">-- Select Zilla --</option>
+                                @foreach($data['zillas'] as $zilla)
+                                <option value="{{$zilla->id}}">{{$zilla->name_en}}</option>
+                                @endforeach
+                            </select>
+                            @error('zilla_id') <small class="text-danger">{{ $message }}</small> @enderror
                         </div>
+
+                        <div class="col-md-3 mb-3">
+                            <label for="division_id" class="form-label">Division*</label>
+                            <select name="division" id="division_id" class="form-control" required>
+                                <option value="">-- Select Division --</option>
+                                @foreach($data['divisions'] as $division)
+                                <option value="{{ $division->id }}">{{ $division->name_en }}</option>
+                                @endforeach
+                            </select>
+                            @error('division_id') <small class="text-danger">{{ $message }}</small> @enderror
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+                            <label for="division_id" class="form-label">Member Zone Type*</label>
+                            <select name="division" id="edit_division_id" class="form-control" required>
+                                <option value="">-- Member Zone Type --</option>
+                                @foreach($data['member_zone_types'] as $member_zone_type)
+                                <option value="{{$member_zone_type->id}}">{{$member_zone_type->name}}</option>
+                                @endforeach
+                            </select>
+                            @error('division_id') <small class="text-danger">{{ $message }}</small> @enderror
+                        </div>
+
                         <div class="col-12 text-center mt-3">
                             <button type="submit" class="btn btn-success">Update</button>
                         </div>

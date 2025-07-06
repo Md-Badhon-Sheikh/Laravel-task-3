@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Zilla;
+use App\Models\MemberZone;
 
 class Division extends Model
 {
@@ -16,5 +18,9 @@ class Division extends Model
     public function zillas()
     {
         return $this->hasMany(Zilla::class);
+    }
+     public function memberZone()
+    {
+        return $this->hasMany(MemberZone::class);
     }
 }
