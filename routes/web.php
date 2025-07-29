@@ -36,8 +36,10 @@ Route::prefix('admin')->group(function () {
             Route::post('profile-password/update', [ProfileController::class, 'profile_password_update'])->name('profile.password.update');
             //dashboard
             Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
-            // member zone 
+            
+            // member zone type
             Route::match(['get', 'post'], 'member-zone-type', [MemberZoneTypeController::class, 'memberZoneTypeList'])->name('member-zone-type');
+
             Route::get('member-zone-type/delete/{id}', [MemberZoneTypeController::class, 'memberZoneTypeDelete'])->name('member-zone-type.delete');
 
 

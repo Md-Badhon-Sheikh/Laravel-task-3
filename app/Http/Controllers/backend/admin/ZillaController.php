@@ -57,7 +57,6 @@ class ZillaController extends Controller implements HasMiddleware
         }
         // $data['zilla_list'] = DB::table('zillas')->get();
 
-
         $data['zilla_list'] = DB::table('zillas')
             ->leftJoin('divisions', 'zillas.division_id', '=', 'divisions.id')
             ->select('zillas.*', 'divisions.name_en as division_name')

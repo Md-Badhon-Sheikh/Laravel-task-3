@@ -59,8 +59,6 @@ class MemberZoneController extends Controller implements HasMiddleware
         $data['page_title'] = 'Member Zone';
 
 
-        // $data['member-zone'] = \App\Models\MemberZone::all();
-
         $data['member_zone_list'] = DB::table('member_zones')
             ->leftJoin('zillas', 'member_zones.zilla_id', '=', 'zillas.id')
             ->leftJoin('divisions', 'member_zones.division_id', '=', 'divisions.id')

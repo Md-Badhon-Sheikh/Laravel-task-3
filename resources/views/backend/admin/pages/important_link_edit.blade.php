@@ -57,7 +57,7 @@
                                  <div class="col-md-3 mb-3">
                                     <label for="issue_date" class="form-label">Link Type</label>
                                     <input type="text" name="link_type"  value="{{$data['link']->link_type}}"class="form-control" placeholder="Enter link type">
-                                </div>
+                                 </div>
                                
                             </div>
                             <div class="text-center mt-2">

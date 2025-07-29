@@ -47,7 +47,7 @@ class DivisionController extends Controller implements HasMiddleware
                 }
                 
             }catch(PDOException $e){
-                return back()->with('error', 'Faild Please Try again');
+                return back()->with('error', 'Failed Please Try again');
             }
         }
         $data['division_list'] = DB::table('divisions')->get();

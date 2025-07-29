@@ -73,7 +73,7 @@
             <!-- Aria Manage  -->
 
             <li
-                class="nav-item  {{ $data['active_menu'] == 'zilla' || $data['active_menu'] == 'division' ? 'active' : '' }}">
+                class="nav-item {{ $data['active_menu'] == 'division' || $data['active_menu'] == 'zilla' ? 'active' : '' }}">
                 <a class="nav-link" data-bs-toggle="collapse" href="#division" role="button" aria-expanded="false"
                     aria-controls="division">
                     <i class="fa-regular fa-user"></i>

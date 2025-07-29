@@ -11,9 +11,9 @@ class Division extends Model
 {
     use HasFactory;
     protected $guarded = [];
-     protected $table = 'divisions';
+    protected $table = 'divisions';
+    protected $fillable = ['name_en', 'name_bn', 'priority', 'created_by'];
 
-      protected $fillable = ['name'];
 
     public function zillas()
     {
